@@ -1,180 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Drag & Drop Images</title>
-  <style>
-    .image {
-      height: 300px;
-      width: 200px;
-      margin: 20px;
-      background-size: cover;
-      border: 1px solid black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      color: white;
-      font-weight: bold;
-    }
-    .flex {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .selected {
-      border: 5px solid rgb(0, 195, 255);
-    }
-  </style>
-</head>
-<body>
-  <h1 style="text-align:center">Arrange Images by Drag and Drop</h1>
-  <div class="flex" id="parent">
-    <div draggable="true" class="image" id="1" style="background-image:url('https://picsum.photos/id/237/200/300')">1</div>
-    <div draggable="true" class="image" id="2" style="background-image:url('https://picsum.photos/seed/picsum/200/300')">2</div>
-    <div draggable="true" class="image" id="3" style="background-image:url('https://picsum.photos/200/300?grayscale')">3</div>
-    <div draggable="true" class="image" id="4" style="background-image:url('https://picsum.photos/200/300')">4</div>
-    <div draggable="true" class="image" id="5" style="background-image:url('https://picsum.photos/200/300.jpg')">5</div>
-    <div draggable="true" class="image" id="6" style="background-image:url('https://picsum.photos/id/102/200/300')">6</div>
-  </div>
-
-  <script>
-    const parent = document.getElementById("parent");
-    let dragged = null;
-
-    parent.addEventListener("dragstart", e => {
-      if (e.target.classList.contains("image")) {
-        dragged = e.target;
-        setTimeout(() => e.target.classList.add("selected"), 0);
-      }
-    });
-
-    parent.addEventListener("dragend", e => {
-      e.target.classList.remove("selected");
-    });
-
-    parent.addEventListener("dragover", e => {
-      e.preventDefault();
-    });
-
-    parent.addEventListener("drop", e => {
-      e.preventDefault();
-      if (e.target.classList.contains("image") && dragged !== e.target) {
-        // Swap elements
-        let draggedNext = dragged.nextSibling;
-        let targetNext = e.target.nextSibling;
-
-        parent.insertBefore(dragged, targetNext);
-        parent.insertBefore(e.target, draggedNext);
-      }
-    });
-  </script>
-</body>
-</html>
-<!-- <!DOCTYPE html>
-<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Drag & Drop Images</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
-      .image1 {
-        background-image: url("https://picsum.photos/id/237/200/300");
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-        border: 1px solid black;
-      }
-      .image2 {
-        background-image: url("https://picsum.photos/seed/picsum/200/300");
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-      }
-      .image3 {
-        background-image: url("https://picsum.photos/200/300?grayscale");
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-      }
-      .image4 {
-        background-image: url("https://picsum.photos/200/300/");
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-      }
-      .image5 {
-        background-image: url("https://picsum.photos/200/300.jpg");
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-      }
-      .image6 {
-        background-image: url("https://picsum.photos/id/102/200/300");
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-      }
-      .flex {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-      .selected {
-        border: 5px solid rgb(0, 195, 255);
-      }
+      #div1 {
+  background-image: url("https://picsum.photos/id/237/200/300");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+  background-size: cover;
+  border:1px solid black;
+}
+
+#div2{
+  background-image: url("https://picsum.photos/seed/picsum/200/300");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+    background-size: cover;
+}
+
+#div3 {
+  background-image: url("https://picsum.photos/200/300?grayscale");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+#div4{
+  background-image: url("https://picsum.photos/200/300/");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+  background-size:cover;
+}
+
+#div5{
+  background-image: url("https://picsum.photos/200/300.jpg");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+    background-size:cover;
+}
+
+#div6 {
+  background-image: url("https://picsum.photos/id/102/200/300");
+  height: 300px;
+  width: 200px;
+  margin: 20px;
+}
+
+div.container {
+  border: 5px solid #555;
+}
+
+.flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.selected {
+  border: 5px solid rgb(0, 195, 255);
+}
+
+p {
+  text-align: center;
+}
+
+button {
+  margin: 20px;
+}
+
     </style>
   </head>
   <body>
     <h1 style="text-align: center">Arrange Images by drag and drop</h1>
     <div class="flex" id="parent">
-      <div draggable="true" class="image1" id="1">Image 1</div>
-      <div draggable="true" class="image2" id="2">Image 2</div>
-      <div draggable="true" class="image3" id="3">Image 3</div>
-      <div draggable="true" class="image4" id="4">Image 4</div>
-      <div draggable="true" class="image5" id="5">Image 5</div>
-      <div draggable="true" class="image6" id="6">Image 6</div>
+      <div draggable="true" class="image1" id="div1" >Image 1</div>
+      <div draggable="true" class="image2" id="div2" >Image 2</div>
+      <div draggable="true" class="image3"  id="div3" >Image 3</div>
+      <div draggable="true" class="image4" id="div4"  >Image 4</div>
+      <div draggable="true" class="image5" id="div5" >Image 5</div>
+      <div draggable="true" class="image6"  id="div6" >Image 6</div>
     </div>
-
     <script>
-      const main = document.getElementById("parent");
-      const boxes = main.querySelectorAll("div");
-
-      // Attach events to all boxes
-      boxes.forEach(box => {
-        box.addEventListener("dragstart", startdrag);
-        box.addEventListener("drop", drop);
-        box.addEventListener("dragover", over);
-      });
-
-      function startdrag(e) {
-        e.dataTransfer.setData("text", e.target.id);
-      }
-
-      function drop(e) {
-        e.preventDefault();
-
-        const dragId = e.dataTransfer.getData("text");
-        const dragged = document.getElementById(dragId);
-        const target = e.target;
-
-        if (dragged !== target) {
-          // Swap background images
-          let temp = dragged.style.backgroundImage;
-          dragged.style.backgroundImage = target.style.backgroundImage;
-          target.style.backgroundImage = temp;
+        // const main=document.getElementById("parent")
+        // const box1=document.getElementById("1")
+        // const box2=document.getElementById("2")
+        // const box3=document.getElementById("3")
+        // const box4=document.getElementById("4")
+        // const box5=document.getElementById("5")
+        // const box6=document.getElementById("6")
+        // box1.addEventListener("dragstart",startdrag)
+        // box2.addEventListener("dragstart",startdrag)
+        // box3.addEventListener("dragstart",startdrag)
+        // box4.addEventListener("dragstart",startdrag)
+        // box5.addEventListener("dragstart",startdrag)
+        // box6.addEventListener("dragstart",startdrag)
+        // box1.addEventListener("drop",drop)
+        // box2.addEventListener("drop",drop)
+        // box3.addEventListener("drop",drop)
+        // box4.addEventListener("drop",drop)
+        // box5.addEventListener("drop",drop)
+        // box6.addEventListener("drop",drop)
+        // box1.addEventListener("dragover",over)
+        // box2.addEventListener("dragover",over)
+        // box3.addEventListener("dragover",over)
+        // box4.addEventListener("dragover",over)
+        // box5.addEventListener("dragover",over)
+        // box6.addEventListener("dragover",over)
+        // function startdrag(e){
+        //     console.log(e,"drag starts")
+        //     e.dataTransfer.setData("text",e.target.id)
+        // }
+        // function drop(e){
+        //     const arr=["https://picsum.photos/id/237/200/300","https://picsum.photos/seed/picsum/200/300","https://picsum.photos/200/300?grayscale","https://picsum.photos/200/300/",
+        //         "https://picsum.photos/200/300.jpg","https://picsum.photos/id/102/200/300"
+        //     ]
+        //      //console.log(e,"drop point")
+        //    // let temp=e.target.id
+        //      const dragelementid=e.dataTransfer.getData("text")
+        //     let dragelement=document.getElementById(dragelementid)
+        //      //console.log(dragelementid,"drag id",e.target.id)
+        //      //console.log(dragelement,"drag element")
+        //     //  e.target.id=dragelement
+        //     //  dragelement=temp
+        //     //console.log(e.target.style.url)
+        //     //console.log(dragelement.style.url)
+        //    // console.log(arr[e.target.id-1],e.target.id,arr[dragelement.id-1],dragelement.id)
+        //     e.target.style.backgroundImage=`url(${arr[dragelement.id-1]})`
+        //     dragelement.style.backgroundImage=`url(${arr[e.target.id-1]})`
+        //     ///console.log(dragelement.id)
+            
+        // }
+        // function over(e){
+        //      e.preventDefault()
+        //      console.log(e,"dragover")
+        // }
+      const parent=document.getElementById("parent")
+      let drag=null
+      parent.addEventListener("dragstart",(e)=>{
+        drag=e.target
+      })
+      parent.addEventListener("dragover",(e)=>{
+        e.preventDefault()
+      })
+      parent.addEventListener("drop",(e)=>{
+        if(e.target!==drag){
+          let dragnext=drag.nextSibling
+          let targetnext=e.target.nextSibling
+          console.log(dragnext)
+          console.log(targetnext)
+          parent.insertBefore(drag,targetnext)
+          parent.insertBefore(e.target,dragnext)
         }
-      }
-
-      function over(e) {
-        e.preventDefault(); // Needed to allow drop
-      }
+      })
     </script>
   </body>
-</html> -->
+</html>
