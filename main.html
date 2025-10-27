@@ -4,160 +4,97 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Drag and Drop Images</title>
     <style>
-      #div1 {
-  background-image: url("https://picsum.photos/id/237/200/300");
-  height: 300px;
-  width: 200px;
-  margin: 20px;
-  background-size: cover;
-  border:1px solid black;
-}
+      body {
+        font-family: Arial, sans-serif;
+      }
 
-#div2{
-  background-image: url("https://picsum.photos/seed/picsum/200/300");
-  height: 300px;
-  width: 200px;
-  margin: 20px;
-    background-size: cover;
-}
+      h1 {
+        text-align: center;
+      }
 
-#div3 {
-  background-image: url("https://picsum.photos/200/300?grayscale");
-  height: 300px;
-  width: 200px;
-  margin: 20px;
-}
+      .flex {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
 
-#div4{
-  background-image: url("https://picsum.photos/200/300/");
-  height: 300px;
-  width: 200px;
-  margin: 20px;
-  background-size:cover;
-}
+      .box {
+        height: 300px;
+        width: 200px;
+        margin: 20px;
+        background-size: cover;
+        background-position: center;
+        border: 2px solid #000;
+        color: white;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        padding: 5px;
+      }
 
-#div5{
-  background-image: url("https://picsum.photos/200/300.jpg");
-  height: 300px;
-  width: 200px;
-  margin: 20px;
-    background-size:cover;
-}
+      /* Individual Images */
+      #drag1 {
+        background-image: url("https://picsum.photos/id/237/200/300");
+      }
 
-#div6 {
-  background-image: url("https://picsum.photos/id/102/200/300");
-  height: 300px;
-  width: 200px;
-  margin: 20px;
-}
+      #drag2 {
+        background-image: url("https://picsum.photos/seed/picsum/200/300");
+      }
 
-div.container {
-  border: 5px solid #555;
-}
+      #drag3 {
+        background-image: url("https://picsum.photos/200/300?grayscale");
+      }
 
-.flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      #drag4 {
+        background-image: url("https://picsum.photos/200/300/");
+      }
 
-.selected {
-  border: 5px solid rgb(0, 195, 255);
-}
+      #drag5 {
+        background-image: url("https://picsum.photos/200/300.jpg");
+      }
 
-p {
-  text-align: center;
-}
-
-button {
-  margin: 20px;
-}
-
+      #drag6 {
+        background-image: url("https://picsum.photos/id/102/200/300");
+      }
     </style>
   </head>
+
   <body>
-    <h1 style="text-align: center">Arrange Images by drag and drop</h1>
+    <h1>Arrange Images by Drag and Drop</h1>
     <div class="flex" id="parent">
-      <div draggable="true" class="image1" id="div1" draggable="true">Image 1</div>
-      <div draggable="true" class="image2" id="div2" draggable="true">Image 2</div>
-      <div draggable="true" class="image3"  id="div3"draggable="true">Image 3</div>
-      <div draggable="true" class="image4" id="div4" draggable="true" >Image 4</div>
-      <div draggable="true" class="image5" id="div5" draggable="true">Image 5</div>
-      <div draggable="true" class="image6"  id="div6" draggable="true">Image 6</div>
+      <div class="box" id="drag1" draggable="true">Image 1</div>
+      <div class="box" id="drag2" draggable="true">Image 2</div>
+      <div class="box" id="drag3" draggable="true">Image 3</div>
+      <div class="box" id="drag4" draggable="true">Image 4</div>
+      <div class="box" id="drag5" draggable="true">Image 5</div>
+      <div class="box" id="drag6" draggable="true">Image 6</div>
     </div>
+
     <script>
-        // const main=document.getElementById("parent")
-        // const box1=document.getElementById("1")
-        // const box2=document.getElementById("2")
-        // const box3=document.getElementById("3")
-        // const box4=document.getElementById("4")
-        // const box5=document.getElementById("5")
-        // const box6=document.getElementById("6")
-        // box1.addEventListener("dragstart",startdrag)
-        // box2.addEventListener("dragstart",startdrag)
-        // box3.addEventListener("dragstart",startdrag)
-        // box4.addEventListener("dragstart",startdrag)
-        // box5.addEventListener("dragstart",startdrag)
-        // box6.addEventListener("dragstart",startdrag)
-        // box1.addEventListener("drop",drop)
-        // box2.addEventListener("drop",drop)
-        // box3.addEventListener("drop",drop)
-        // box4.addEventListener("drop",drop)
-        // box5.addEventListener("drop",drop)
-        // box6.addEventListener("drop",drop)
-        // box1.addEventListener("dragover",over)
-        // box2.addEventListener("dragover",over)
-        // box3.addEventListener("dragover",over)
-        // box4.addEventListener("dragover",over)
-        // box5.addEventListener("dragover",over)
-        // box6.addEventListener("dragover",over)
-        // function startdrag(e){
-        //     console.log(e,"drag starts")
-        //     e.dataTransfer.setData("text",e.target.id)
-        // }
-        // function drop(e){
-        //     const arr=["https://picsum.photos/id/237/200/300","https://picsum.photos/seed/picsum/200/300","https://picsum.photos/200/300?grayscale","https://picsum.photos/200/300/",
-        //         "https://picsum.photos/200/300.jpg","https://picsum.photos/id/102/200/300"
-        //     ]
-        //      //console.log(e,"drop point")
-        //    // let temp=e.target.id
-        //      const dragelementid=e.dataTransfer.getData("text")
-        //     let dragelement=document.getElementById(dragelementid)
-        //      //console.log(dragelementid,"drag id",e.target.id)
-        //      //console.log(dragelement,"drag element")
-        //     //  e.target.id=dragelement
-        //     //  dragelement=temp
-        //     //console.log(e.target.style.url)
-        //     //console.log(dragelement.style.url)
-        //    // console.log(arr[e.target.id-1],e.target.id,arr[dragelement.id-1],dragelement.id)
-        //     e.target.style.backgroundImage=`url(${arr[dragelement.id-1]})`
-        //     dragelement.style.backgroundImage=`url(${arr[e.target.id-1]})`
-        //     ///console.log(dragelement.id)
-            
-        // }
-        // function over(e){
-        //      e.preventDefault()
-        //      console.log(e,"dragover")
-        // }
-      const parent=document.getElementById("parent")
-      let drag=null
-      parent.addEventListener("dragstart",(e)=>{
-        drag=e.target
-      })
-      parent.addEventListener("dragover",(e)=>{
-        e.preventDefault()
-      })
-      parent.addEventListener("drop",(e)=>{
-        if(e.target!==drag){
-          let dragnext=drag.nextSibling
-          let targetnext=e.target.nextSibling
-          console.log(dragnext)
-          console.log(targetnext)
-          parent.insertBefore(drag,targetnext)
-          parent.insertBefore(e.target,dragnext)
+      const parent = document.getElementById("parent");
+      let drag = null;
+
+      parent.addEventListener("dragstart", (e) => {
+        drag = e.target;
+      });
+
+      parent.addEventListener("dragover", (e) => {
+        e.preventDefault();
+      });
+
+      parent.addEventListener("drop", (e) => {
+        e.preventDefault();
+        if (e.target !== drag && e.target.classList.contains("box")) {
+          let dragnext = drag.nextSibling;
+          let targetnext = e.target.nextSibling;
+          parent.insertBefore(drag, targetnext);
+          parent.insertBefore(e.target, dragnext);
         }
-      })
+      });
     </script>
   </body>
 </html>
