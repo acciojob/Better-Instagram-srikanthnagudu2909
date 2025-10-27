@@ -2,16 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Drag and Drop Images</title>
+    <title>Arrange Images by Drag and Drop</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      #div1 {
+        background-image: url("https://picsum.photos/id/237/200/300");
+      }
+      #div2 {
+        background-image: url("https://picsum.photos/seed/picsum/200/300");
+      }
+      #div3 {
+        background-image: url("https://picsum.photos/200/300?grayscale");
+      }
+      #div4 {
+        background-image: url("https://picsum.photos/200/300/");
+      }
+      #div5 {
+        background-image: url("https://picsum.photos/200/300.jpg");
+      }
+      #div6 {
+        background-image: url("https://picsum.photos/id/102/200/300");
       }
 
-      h1 {
-        text-align: center;
+      .box {
+        height: 300px;
+        width: 200px;
+        margin: 20px;
+        background-size: cover;
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        font-weight: bold;
+        color: white;
+        text-shadow: 0 0 5px black;
       }
 
       .flex {
@@ -21,57 +45,22 @@
         flex-wrap: wrap;
       }
 
-      .box {
-        height: 300px;
-        width: 200px;
-        margin: 20px;
-        background-size: cover;
-        background-position: center;
-        border: 2px solid #000;
-        color: white;
-        font-weight: bold;
-        display: flex;
-        justify-content: center;
-        align-items: flex-end;
-        padding: 5px;
-      }
-
-      /* Individual Images */
-      #drag1 {
-        background-image: url("https://picsum.photos/id/237/200/300");
-      }
-
-      #drag2 {
-        background-image: url("https://picsum.photos/seed/picsum/200/300");
-      }
-
-      #drag3 {
-        background-image: url("https://picsum.photos/200/300?grayscale");
-      }
-
-      #drag4 {
-        background-image: url("https://picsum.photos/200/300/");
-      }
-
-      #drag5 {
-        background-image: url("https://picsum.photos/200/300.jpg");
-      }
-
-      #drag6 {
-        background-image: url("https://picsum.photos/id/102/200/300");
+      h1 {
+        text-align: center;
       }
     </style>
   </head>
 
   <body>
     <h1>Arrange Images by Drag and Drop</h1>
+
     <div class="flex" id="parent">
-      <div class="box" id="drag1" draggable="true">Image 1</div>
-      <div class="box" id="drag2" draggable="true">Image 2</div>
-      <div class="box" id="drag3" draggable="true">Image 3</div>
-      <div class="box" id="drag4" draggable="true">Image 4</div>
-      <div class="box" id="drag5" draggable="true">Image 5</div>
-      <div class="box" id="drag6" draggable="true">Image 6</div>
+      <div class="box" id="div1" draggable="true">Image 1</div>
+      <div class="box" id="div2" draggable="true">Image 2</div>
+      <div class="box" id="div3" draggable="true">Image 3</div>
+      <div class="box" id="div4" draggable="true">Image 4</div>
+      <div class="box" id="div5" draggable="true">Image 5</div>
+      <div class="box" id="div6" draggable="true">Image 6</div>
     </div>
 
     <script>
